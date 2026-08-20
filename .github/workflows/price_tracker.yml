@@ -1,0 +1,32 @@
+name: Amazon Price Tracker
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:  # Allows you to manually trigger it from the GitHub UI
+
+jobs:
+  track-price:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run scraper
+        run: python scraper.py
+
+      - name: Upload price history as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: price-history-csv
+          path: price_history.csv
