@@ -30,3 +30,9 @@ jobs:
         with:
           name: price-history-csv
           path: price_history.csv
+
+      - name: Upload debug HTML as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-response-html
+          path: debug_response.html

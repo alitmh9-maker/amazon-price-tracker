@@ -28,6 +28,9 @@ def download_product_page() -> None:
         print(f"Final URL: {response.url}")
 
         soup = BeautifulSoup(response.text, "html.parser")
+        with open("debug_response.html", "w", encoding="utf-8") as file:
+            file.write(response.text)
+            print("Saved full response to debug_response.html for inspection")
 
         challenge = soup.select_one(
             'form[action="/errors_page/validateCaptcha"]'
