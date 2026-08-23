@@ -42,5 +42,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add price_history.csv
-          git commit -m "Automated price update" || exit 0
+          git commit -m "Automated price update"
           git push
